@@ -1,7 +1,13 @@
 import React from 'react';
-
-export default function HelloWorld(props) {
+import Header from './Header';
+import Input from './Input';
+export default function HelloWorld({ items }) {
   return (
-    <h1>Hello, World!</h1>
+    <>
+      <Header />
+      <Input />
+      {/* <Footer length={items.length}/> */}
+    </>
+
   );
 }

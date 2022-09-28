@@ -1,0 +1,65 @@
+.app {
+  text-align: center;
+}
+
+input {
+  padding: 4px;
+  margin-right: 8px;
+  border-radius: 4px solid black;
+}
+
+ul {
+  width: 100%;
+  list-style: none;
+  padding: 0 0.25rem 0.25rem;
+}
+
+li {
+  margin: 12px 0;
+}
+
+.delete-button {
+  color: red;
+  margin-left: 1rem;
+  border-radius: 5px;
+}
+
+input[type="checkbox"] {
+  text-align: center;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+input[type="text"] {
+  width: 50vw;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.checkbox-round {
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.checkbox-round:checked {
+  background-color: gray;
+}
+
+.hidden {
+  display: none;
+}
