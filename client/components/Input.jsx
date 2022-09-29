@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaPlus } from 'react-icons/fa';
 const Input = () => {
   const [input, setInput] = useState('');
   const [items, setItems] = useState([]);
@@ -79,6 +80,7 @@ const Input = () => {
         <button onChange={handleAllItems}>Show All Items</button>
         <button onChange={filterItem}>CheckedItems</button>
         <button onChange={ filterNotDone }>Not done</button>
+        <FaPlus />
       </footer>
     </>
   );
