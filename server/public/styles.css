@@ -1,5 +1,14 @@
-.app {
-  text-align: center;
+* .app {
+  display: flex;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #808080;
+  padding-left: 0;
+  background-color: rgb(255, 254, 254);
 }
 
 input {
@@ -11,17 +20,32 @@ input {
 ul {
   width: 100%;
   list-style: none;
-  padding: 0 0.25rem 0.25rem;
+  padding-left: 0;
+  margin-right: 4rem;
+}
+
+header {
+  width: 100%;
+}
+
+.footer-btns {
+  display: flex;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 li {
   margin: 12px 0;
+  width: 50vw;
+  padding-bottom: 0.5rem;
+  font-size: 20px;
 }
 
 .delete-button {
   color: red;
-  margin-left: 1rem;
+  float: right;
   border-radius: 5px;
+  margin-right: 2rem;
 }
 
 input[type="checkbox"] {
@@ -32,6 +56,10 @@ input[type="checkbox"] {
 
 input[type="text"] {
   width: 50vw;
+  border: 2px solid grey;
+  border-radius: 4px;
+  background-color: rgb(237, 237, 237);
+  margin-right: 0.5rem;
 }
 
 main {
@@ -56,10 +84,25 @@ main {
   cursor: pointer;
 }
 
-.checkbox-round:checked {
-  background-color: gray;
+div > button {
+  border-radius: 5px;
+  border: 2px solid grey;
+  font-family: sans-serif;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.hidden {
-  display: none;
+div > button:hover {
+  color: white;
+  background-color: darkgray;
+}
+
+div > button:active {
+  color: white;
+  background-color: green;
+}
+
+.checkbox-round:checked {
+  background-color: green;
 }
