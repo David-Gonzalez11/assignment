@@ -33,12 +33,12 @@ const Input = () => {
     setItems(newArray);
   }
 
-  function filterItem() {
-    const newItems = items.filter(item => item.checked);
+  function handleActive() {
+    const newItems = items.filter(item => item.checked === true);
     setItems(newItems);
   }
 
-  function filterNotDone(event) {
+  function handleIncomplete(event) {
     const newItems = items.filter(item => !item.checked);
     setItems(newItems);
   }
@@ -100,8 +100,8 @@ const Input = () => {
       <footer>
         <div className="footer-btns d-flex justify-content-center">
           <button onClick={handleAllItems}>all</button>
-          <button onClick={filterItem}>complete</button>
-          <button onClick={filterNotDone}>active</button>
+          <button onClick={handleActive}>complete</button>
+          <button onClick={handleIncomplete}>Incomplete</button>
         </div>
       </footer>
     </>
