@@ -3,6 +3,7 @@ import { FaTrash } from 'react-icons/fa';
 const Input = () => {
   const [input, setInput] = useState('');
   const [items, setItems] = useState([]);
+  const [filter, setFilter] = useState([]);
 
   function addItem() {
     if (!input) {
@@ -35,15 +36,15 @@ const Input = () => {
 
   function handleActive() {
     const newItems = items.filter(item => item.checked === true);
-    setItems(newItems);
+    setFilter(newItems);
   }
 
-  function handleIncomplete(event) {
+  function handleIncomplete() {
     const newItems = items.filter(item => !item.checked);
-    setItems(newItems);
+    setFilter(newItems);
   }
   function handleAllItems() {
-    setItems(items);
+    setFilter(items);
   }
   return (
     <>
@@ -56,7 +57,7 @@ const Input = () => {
             value={input}
           />
           <button
-            className="bg-secondary text-white border-0"
+            className="bg-secondary text-white border-0 todo-btn"
             onClick={() => addItem()}
           >
             Add Todo
