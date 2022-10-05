@@ -84,11 +84,11 @@ main {
   background-color: white;
   border-radius: 50%;
   vertical-align: middle;
-  border: 1px solid #ddd;
   appearance: none;
   outline: none;
   cursor: pointer;
   margin-left: 1em;
+  border: 1px solid black;
 }
 
 div > button {
