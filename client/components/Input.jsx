@@ -16,8 +16,10 @@ const Input = () => {
     };
 
     setItems(oldList => [...oldList, item]);
+    setFilter(oldList => [...oldList, item]);
     setInput('');
   }
+
   const handleCheck = id => {
     const listItems = items.map(item =>
       item.id === id
@@ -35,17 +37,18 @@ const Input = () => {
   }
 
   function handleActive() {
-    const newItems = items.filter(item => item.checked === true);
+    const newItems = filter.filter(item => item.checked === true);
     setFilter(newItems);
   }
 
   function handleIncomplete() {
-    const newItems = items.filter(item => !item.checked);
+    const newItems = filter.filter(item => !item.checked);
     setFilter(newItems);
   }
   function handleAllItems() {
     setFilter(items);
   }
+
   return (
     <>
       <main className="vh-100 app">
@@ -66,7 +69,7 @@ const Input = () => {
 
         <div>
           <ul>
-            {items.map(item => {
+            {filter.map(item => {
               return (
                 <li key={item.id}>
                   <input
