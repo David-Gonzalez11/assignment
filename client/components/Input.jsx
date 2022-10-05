@@ -75,12 +75,14 @@ const Input = () => {
                     onChange={() => handleCheck(item.id)}
                   />
                   <label
+
                     style={
                       item.checked
-                        ? { textDecoration: 'line-through', color: 'lightgray' }
+                        ? { textDecoration: 'line-through', color: 'gray' }
                         : null
                     }
                   >
+
                     {item.value}
                   </label>
                   <FaTrash
