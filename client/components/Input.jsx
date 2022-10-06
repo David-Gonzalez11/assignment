@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const Input = () => {
   const [input, setInput] = useState('');
   const [items, setItems] = useState([]);
@@ -37,12 +39,12 @@ const Input = () => {
   }
 
   function handleActive() {
-    const newItems = filter.filter(item => item.checked === true);
+    const newItems = items.filter(item => item.checked === true);
     setFilter(newItems);
   }
 
   function handleIncomplete() {
-    const newItems = filter.filter(item => !item.checked);
+    const newItems = items.filter(item => !item.checked);
     setFilter(newItems);
   }
   function handleAllItems() {
@@ -50,59 +52,54 @@ const Input = () => {
   }
 
   return (
-    <>
-      <main className="vh-100 app">
-        <div className="d-flex">
-          <input
-            placeholder="Todos..."
-            onChange={e => setInput(e.target.value)}
-            type="text"
-            value={input}
-          />
-          <button
-            className="bg-secondary text-white border-0 todo-btn"
-            onClick={() => addItem()}
-          >
-            Add Todo
-          </button>
-        </div>
+    <main className="vh-100 app">
+      <div className="d-flex">
+        <input
+          placeholder="Todos..."
+          onChange={e => setInput(e.target.value)}
+          type="text"
+          value={input}
+        />
+        <button
+          className="bg-secondary text-white border-0 todo-btn"
+          onClick={() => addItem()}
+        >
+          Add Todo
+        </button>
+      </div>
 
-        <div>
-          <ul>
-            {filter.map(item => {
-              return (
-                <li key={item.id}>
-                  <input
-                    type="checkbox"
-                    className="checkbox-round"
-                    onChange={() => handleCheck(item.id)}
-                  />
-                  <label
-
-                    style={
-                      item.checked
-                        ? { textDecoration: 'line-through', color: 'gray' }
-                        : null
-                    }
-                  >
-
-                    {item.value}
-                  </label>
-                  <FaTrash
-                    onClick={() => deleteItem(item.id)}
-                    className="delete-button"
-                  />
-                  <hr />
-                </li>
-              );
-            })}
-          </ul>
-          <p className="d-flex justify-content-center">
-            {items.length} list {items.length === 1 ? 'item' : 'items'}
-          </p>
-        </div>
-      </main>
-
+      <div>
+        <ul>
+          {items.map(item => {
+            return (
+              <li key={item.id}>
+                <input
+                  type="checkbox"
+                  className="checkbox-round"
+                  onChange={() => handleCheck(item.id)}
+                />
+                <label
+                  style={
+                    item.checked
+                      ? { textDecoration: 'line-through', color: 'gray' }
+                      : null
+                  }
+                >
+                  {item.value}
+                </label>
+                <FaTrash
+                  onClick={() => deleteItem(item.id)}
+                  className="delete-button"
+                />
+                <hr />
+              </li>
+            );
+          })}
+        </ul>
+        <p className="d-flex justify-content-center">
+          {items.length} list {items.length === 1 ? 'item' : 'items'}
+        </p>
+      </div>
       <footer>
         <div className="footer-btns d-flex justify-content-center">
           <button onClick={handleAllItems}>all</button>
@@ -110,7 +107,7 @@ const Input = () => {
           <button onClick={handleIncomplete}>Incomplete</button>
         </div>
       </footer>
-    </>
+    </main>
   );
 };
 export default Input;
