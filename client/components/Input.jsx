@@ -1,11 +1,31 @@
-import React, { useState } from 'react';
-import { FaTrash } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { FaTrash, FaStar } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Input = () => {
   const [input, setInput] = useState('');
   const [items, setItems] = useState([]);
-  const [filter, setFilter] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
+  const [filter, setFilter] = useState('all');
+
+  useEffect(() => {
+    const savedItems = JSON.parse(localStorage.getItem('todos'));
+    if (items.length === 0 && savedItems && savedItems.length > 0) {
+      setItems(savedItems);
+    }
+    if (filter === 'all') {
+      setFilteredItems(items);
+    } else if (filter === 'complete') {
+      const completeItems = items.filter(item => item.checked === true);
+      setFilteredItems(completeItems);
+    } else if (filter === 'incomplete') {
+      const incompleteItems = items.filter(item => !item.checked === true);
+      setFilteredItems(incompleteItems);
+    } else if (filter === 'important') {
+      const importantItems = items.filter(item => item.important === true);
+      setFilteredItems(importantItems);
+    }
+  }, [filter, items]);
 
   function addItem() {
     if (!input) {
@@ -17,8 +37,8 @@ const Input = () => {
       value: input
     };
 
-    setItems(oldList => [...oldList, item]);
-    setFilter(oldList => [...oldList, item]);
+    setItems([...items, item]);
+    localStorage.setItem('todos', JSON.stringify([...items, item]));
     setInput('');
   }
 
@@ -32,23 +52,41 @@ const Input = () => {
         : item
     );
     setItems(listItems);
+    localStorage.setItem('todos', JSON.stringify(listItems));
   };
+
+  const handleFavoriteCheck = id => {
+    alert('You favorited an item');
+
+    const important = items.map(item =>
+      item.id === id
+        ? {
+            ...item,
+            important: !item.important
+          }
+        : item
+    );
+    setItems(important);
+    localStorage.setItem('todos', JSON.stringify(important));
+  };
+
   function deleteItem(id) {
     const newArray = items.filter(item => item.id !== id);
     setItems(newArray);
   }
 
-  function handleActive() {
-    const newItems = items.filter(item => item.checked === true);
-    setFilter(newItems);
+  function handleComplete() {
+    setFilter('complete');
   }
 
   function handleIncomplete() {
-    const newItems = items.filter(item => !item.checked);
-    setFilter(newItems);
+    setFilter('incomplete');
   }
   function handleAllItems() {
-    setFilter(items);
+    setFilter('all');
+  }
+  function handleFavorite() {
+    setFilter('important');
   }
 
   return (
@@ -63,6 +101,7 @@ const Input = () => {
         <button
           className="bg-secondary text-white border-0 todo-btn"
           onClick={() => addItem()}
+          type="submit"
         >
           Add Todo
         </button>
@@ -70,7 +109,7 @@ const Input = () => {
 
       <div>
         <ul>
-          {items.map(item => {
+          {filteredItems && filteredItems.map(item => {
             return (
               <li key={item.id}>
                 <input
@@ -91,6 +130,8 @@ const Input = () => {
                   onClick={() => deleteItem(item.id)}
                   className="delete-button"
                 />
+                <FaStar className='favorite-button' onClick={() => handleFavoriteCheck(item.id)}/>
+
                 <hr />
               </li>
             );
@@ -103,8 +144,9 @@ const Input = () => {
       <footer>
         <div className="footer-btns d-flex justify-content-center">
           <button onClick={handleAllItems}>all</button>
-          <button onClick={handleActive}>complete</button>
+          <button onClick={handleComplete}>complete</button>
           <button onClick={handleIncomplete}>Incomplete</button>
+          <button onClick={handleFavorite}>Important</button>
         </div>
       </footer>
     </main>

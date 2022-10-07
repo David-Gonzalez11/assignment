@@ -46,6 +46,17 @@ li {
   margin-right: 2rem;
 }
 
+.favorite-button {
+  color: black;
+  float: right;
+  border-radius: 5px;
+  margin-right: 2rem;
+}
+
+.favorite-button:active {
+  color: blue;
+}
+
 input[type="checkbox"] {
   text-align: center;
   cursor: pointer;
