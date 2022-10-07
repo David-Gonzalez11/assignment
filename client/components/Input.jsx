@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaTrash, FaStar } from 'react-icons/fa';
+import { FaTimesCircle, FaStar } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Input = () => {
@@ -56,13 +56,13 @@ const Input = () => {
   };
 
   const handleFavoriteCheck = id => {
-    alert('You favorited an item');
+    // alert('You favorited an item');
 
     const important = items.map(item =>
       item.id === id
         ? {
             ...item,
-            important: !item.important
+            important: (item.important === true ? alert('Item added to important') : alert('item was removed from important'))
           }
         : item
     );
@@ -90,6 +90,7 @@ const Input = () => {
   }
 
   return (
+
     <main className="vh-100 app">
       <div className="d-flex">
         <input
@@ -99,7 +100,7 @@ const Input = () => {
           value={input}
         />
         <button
-          className="bg-secondary text-white border-0 todo-btn"
+          className="text-black border-0 todo-btn"
           onClick={() => addItem()}
           type="submit"
         >
@@ -126,7 +127,7 @@ const Input = () => {
                 >
                   {item.value}
                 </label>
-                <FaTrash
+                <FaTimesCircle
                   onClick={() => deleteItem(item.id)}
                   className="delete-button"
                 />
@@ -143,13 +144,14 @@ const Input = () => {
       </div>
       <footer>
         <div className="footer-btns d-flex justify-content-center">
-          <button onClick={handleAllItems}>all</button>
-          <button onClick={handleComplete}>complete</button>
-          <button onClick={handleIncomplete}>Incomplete</button>
-          <button onClick={handleFavorite}>Important</button>
+          <button onClick={handleAllItems} className="filter-btns">all</button>
+          <button onClick={handleComplete} className="filter-btns">complete</button>
+          <button onClick={handleIncomplete} className="filter-btns">Incomplete</button>
+          <button onClick={handleFavorite} className="filter-btns">Important</button>
         </div>
       </footer>
     </main>
+
   );
 };
 export default Input;
