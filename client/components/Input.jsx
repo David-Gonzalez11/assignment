@@ -62,7 +62,7 @@ const Input = () => {
       item.id === id
         ? {
             ...item,
-            important: (item.important === true ? alert('Item added to important') : alert('item was removed from important'))
+            important: !item.important
           }
         : item
     );
@@ -90,7 +90,6 @@ const Input = () => {
   }
 
   return (
-
     <main className="vh-100 app">
       <div className="d-flex">
         <input
@@ -110,33 +109,37 @@ const Input = () => {
 
       <div>
         <ul>
-          {filteredItems && filteredItems.map(item => {
-            return (
-              <li key={item.id}>
-                <input
-                  type="checkbox"
-                  className="checkbox-round"
-                  onChange={() => handleCheck(item.id)}
-                />
-                <label
-                  style={
-                    item.checked
-                      ? { textDecoration: 'line-through', color: 'gray' }
-                      : null
-                  }
-                >
-                  {item.value}
-                </label>
-                <FaTimesCircle
-                  onClick={() => deleteItem(item.id)}
-                  className="delete-button"
-                />
-                <FaStar className='favorite-button' onClick={() => handleFavoriteCheck(item.id)}/>
+          {filteredItems &&
+            filteredItems.map(item => {
+              return (
+                <li key={item.id}>
+                  <input
+                    type="checkbox"
+                    className="checkbox-round"
+                    onChange={() => handleCheck(item.id)}
+                  />
+                  <label
+                    style={
+                      item.checked
+                        ? { textDecoration: 'line-through', color: 'gray' }
+                        : null
+                    }
+                  >
+                    {item.value}
+                  </label>
+                  <FaTimesCircle
+                    onClick={() => deleteItem(item.id)}
+                    className="delete-button"
+                  />
+                  <FaStar
+                    className="favorite-button"
+                    onClick={() => handleFavoriteCheck(item.id)}
+                  />
 
-                <hr />
-              </li>
-            );
-          })}
+                  <hr />
+                </li>
+              );
+            })}
         </ul>
         <p className="d-flex justify-content-center">
           {items.length} list {items.length === 1 ? 'item' : 'items'}
@@ -144,14 +147,21 @@ const Input = () => {
       </div>
       <footer>
         <div className="footer-btns d-flex justify-content-center">
-          <button onClick={handleAllItems} className="filter-btns">all</button>
-          <button onClick={handleComplete} className="filter-btns">complete</button>
-          <button onClick={handleIncomplete} className="filter-btns">Incomplete</button>
-          <button onClick={handleFavorite} className="filter-btns">Important</button>
+          <button onClick={handleAllItems} className="filter-btns">
+            all
+          </button>
+          <button onClick={handleComplete} className="filter-btns">
+            complete
+          </button>
+          <button onClick={handleIncomplete} className="filter-btns">
+            Incomplete
+          </button>
+          <button onClick={handleFavorite} className="filter-btns">
+            Important
+          </button>
         </div>
       </footer>
     </main>
-
   );
 };
 export default Input;
