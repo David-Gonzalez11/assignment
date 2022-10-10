@@ -135,3 +135,10 @@ li:nth-child(even) {
 p {
   color: darkgray;
 }
+
+.notext {
+  font-size: large;
+  color: red;
+  display: flex;
+  justify-content: center;
+}

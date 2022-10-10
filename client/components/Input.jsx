@@ -13,6 +13,7 @@ const Input = () => {
     if (items.length === 0 && savedItems && savedItems.length > 0) {
       setItems(savedItems);
     }
+
     if (filter === 'all') {
       setFilteredItems(items);
     } else if (filter === 'complete') {
@@ -144,7 +145,7 @@ const Input = () => {
             })}
         </ul>
         <p className="d-flex justify-content-center">
-          {items.length} list {items.length === 1 ? 'item' : 'items'}
+          {items.length === 0 ? 'No todos' : `${items.length} list ${items.length === 1 ? 'item' : 'items'}`}
         </p>
       </div>
       <footer>
