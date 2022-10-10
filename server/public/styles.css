@@ -116,9 +116,9 @@ div > button:active {
   background-color: grey;
 }
 
-.checkbox-round:checked {
+/* .checkbox-round:checked {
   background-color: green;
-}
+} */
 
 label {
   color: white;

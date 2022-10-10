@@ -72,6 +72,7 @@ const Input = () => {
 
   function deleteItem(id) {
     const newArray = items.filter(item => item.id !== id);
+    localStorage.removeItem('todos');
     setItems(newArray);
   }
 
@@ -127,6 +128,7 @@ const Input = () => {
                   >
                     {item.value}
                   </label>
+
                   <FaTimesCircle
                     onClick={() => deleteItem(item.id)}
                     className="delete-button"
