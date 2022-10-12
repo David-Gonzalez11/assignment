@@ -13,6 +13,7 @@ const Input = () => {
     if (items.length === 0 && savedItems && savedItems.length > 0) {
       setItems(savedItems);
     }
+
     if (filter === 'all') {
       setFilteredItems(items);
     } else if (filter === 'complete') {
@@ -24,6 +25,11 @@ const Input = () => {
     } else if (filter === 'important') {
       const importantItems = items.filter(item => item.important === true);
       setFilteredItems(importantItems);
+    } else if (filter === 'completedTasks') {
+      const clearCompleted = items.filter(item =>
+        item.checked ? null : items
+      );
+      setItems(clearCompleted);
     }
   }, [filter, items]);
 
@@ -89,6 +95,9 @@ const Input = () => {
   function handleFavorite() {
     setFilter('important');
   }
+  function handleClearCompleted() {
+    setFilter('completedTasks');
+  }
 
   return (
     <main className="vh-100 app">
@@ -99,10 +108,10 @@ const Input = () => {
           type="text"
           value={input}
         />
+
         <button
           className="text-black border-0 todo-btn"
           onClick={() => addItem()}
-          type="submit"
         >
           Add Todo
         </button>
@@ -137,14 +146,14 @@ const Input = () => {
                     className="favorite-button"
                     onClick={() => handleFavoriteCheck(item.id)}
                   />
-
-                  <hr />
                 </li>
               );
             })}
         </ul>
         <p className="d-flex justify-content-center">
-          {items.length} list {items.length === 1 ? 'item' : 'items'}
+          {items.length === 0
+            ? 'No todos'
+            : `${items.length} list ${items.length === 1 ? 'item' : 'items'}`}
         </p>
       </div>
       <footer>
@@ -160,6 +169,9 @@ const Input = () => {
           </button>
           <button onClick={handleFavorite} className="filter-btns">
             Important
+          </button>
+          <button onClick={handleClearCompleted} className="filter-btns">
+            Clear Completed
           </button>
         </div>
       </footer>
