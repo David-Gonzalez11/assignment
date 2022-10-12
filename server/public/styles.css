@@ -36,6 +36,7 @@ li {
   margin-top: 2rem;
   background-color: rgb(26, 25, 51);
   border-radius: 15px;
+  padding-bottom: 0.5rem;
 }
 
 .delete-button {
@@ -109,6 +110,7 @@ div > button {
 div > button:hover {
   color: white;
   background-color: darkgray;
+  transition: all 0.2s ease-out;
 }
 
 div > button:active {
@@ -117,7 +119,7 @@ div > button:active {
 }
 
 /* .checkbox-round:checked {
-  background-color: green;
+  background-color: lightblue;
 } */
 
 label {
@@ -136,9 +138,27 @@ p {
   color: darkgray;
 }
 
-.notext {
-  font-size: large;
-  color: red;
-  display: flex;
-  justify-content: center;
+@media only screen and (max-width: 400px) {
+  .filter-btns {
+    width: 50%;
+    padding: 1px;
+    font-size: x-small;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .filter-btns {
+    width: 50%;
+    padding: 1px;
+    font-size: medium;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .filter-btns {
+    width: 50%;
+
+    /* padding: 1px; */
+    font-size: medium;
+  }
 }
