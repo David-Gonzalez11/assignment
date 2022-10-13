@@ -112,7 +112,7 @@ const Input = () => {
         />
 
         <button
-          className="text-black border-0 todo-btn"
+          className="border-0 todo-btn"
           onClick={() => addItem()}
         >
           Add Todo
