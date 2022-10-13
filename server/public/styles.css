@@ -61,6 +61,7 @@ li {
   background-color: rgb(84, 91, 255);
   border: none;
   margin-left: 1rem;
+  border-radius: 10px;
 }
 
 input[type="checkbox"] {

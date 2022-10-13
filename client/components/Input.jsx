@@ -7,6 +7,7 @@ const Input = () => {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [filter, setFilter] = useState('all');
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const savedItems = JSON.parse(localStorage.getItem('todos'));
@@ -98,6 +99,7 @@ const Input = () => {
   function handleClearCompleted() {
     setFilter('completedTasks');
   }
+  // console.log(items.filter(user => user.value.includes(query)));
 
   return (
     <main className="vh-100 app">
@@ -115,14 +117,16 @@ const Input = () => {
         >
           Add Todo
         </button>
+
       </div>
+      <input type="text" placeholder="Search..." onChange={e => setQuery(e.target.value)}/>
 
       <div>
         <ul>
           {filteredItems &&
-            filteredItems.map(item => {
+            filteredItems.filter(itemss => itemss.value.toLowerCase().includes(query)).map(item => {
               return (
-                <li key={item.id}>
+                <li key={item.id} >
                   <input
                     type="checkbox"
                     className="checkbox-round"
