@@ -44,13 +44,16 @@ li {
   float: right;
   border-radius: 5px;
   margin-right: 0.5rem;
+  margin-top: 0.4rem;
 }
 
 .favorite-button {
   color: orange;
   float: right;
   border-radius: 5px;
-  margin-right: 2rem;
+  margin-right: 1rem;
+  padding-top: 3px;
+  margin-top: 0.4rem;
 }
 
 .favorite-button:active {
@@ -144,6 +147,14 @@ p {
     width: 50%;
     padding: 1px;
     font-size: x-small;
+  }
+
+  input.search {
+    width: 90%;
+  }
+
+  label {
+    font-size: xx-small;
   }
 }
 
