@@ -119,9 +119,9 @@ const Input = () => {
         </button>
 
       </div>
-      <input type="text" placeholder="Search..." onChange={e => setQuery(e.target.value)} className="search"/>
 
       <div>
+        <input type="text" placeholder="Search..." onChange={e => setQuery(e.target.value)} className="search"/>
         <ul>
           {filteredItems &&
             filteredItems.filter(itemss => itemss.value.toLowerCase().includes(query)).map(item => {
