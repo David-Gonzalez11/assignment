@@ -28,9 +28,12 @@ const Input = () => {
       setFilteredItems(importantItems);
     } else if (filter === 'completedTasks') {
       const clearCompleted = items.filter(item =>
-        item.checked ? null : items
+        !item.checked === true
       );
-      setItems(clearCompleted);
+      setFilteredItems(clearCompleted);
+      localStorage.setItem('todos', JSON.stringify(clearCompleted));
+
+      // setItems(clearCompleted);
     }
   }, [filter, items]);
 
@@ -122,7 +125,18 @@ const Input = () => {
 
       <div>
         <input type="text" placeholder="Search..." onChange={e => setQuery(e.target.value)} className="search"/>
-        <ul>
+        <div className='d-flex footer-btns mt-3 justify-content-center'>
+          <button onClick={handleAllItems} className="filter-btns">
+            all
+          </button>
+          <button onClick={handleComplete} className="filter-btns">
+            complete
+          </button>
+          <button onClick={handleIncomplete} className="filter-btns">
+            Incomplete
+          </button>
+        </div>
+        <ul className='width'>
           {filteredItems &&
             filteredItems.filter(itemss => itemss.value.toLowerCase().includes(query)).map(item => {
               return (
@@ -162,7 +176,7 @@ const Input = () => {
       </div>
       <footer>
         <div className="footer-btns d-flex justify-content-center">
-          <button onClick={handleAllItems} className="filter-btns">
+          {/* <button onClick={handleAllItems} className="filter-btns">
             all
           </button>
           <button onClick={handleComplete} className="filter-btns">
@@ -170,7 +184,7 @@ const Input = () => {
           </button>
           <button onClick={handleIncomplete} className="filter-btns">
             Incomplete
-          </button>
+          </button> */}
           <button onClick={handleFavorite} className="filter-btns">
             Important
           </button>

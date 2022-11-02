@@ -24,6 +24,10 @@ ul {
   margin-right: 4rem;
 }
 
+.width {
+  width: 100%;
+}
+
 .footer-btns {
   display: flex;
   margin-left: 1rem;
@@ -129,16 +133,16 @@ div > button:active {
 } */
 
 label {
-  color: white;
+  color: black;
 }
 
-/* li:nth-child(odd) {
-  background-color: rgb(194, 17, 147);
+li:nth-child(odd) {
+  background-color: rgb(0, 64, 153);
 }
 
 li:nth-child(even) {
-  background-color: rgb(48, 196, 255);
-} */
+  background-color: rgb(6, 106, 157);
+}
 
 p {
   color: darkgray;
