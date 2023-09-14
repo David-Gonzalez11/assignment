@@ -168,8 +168,14 @@ const Input = () => {
                       className="delete-button"
                     />
                     <FaStar
-                      className="favorite-button"
+                      className={`favorite-button ${
+                        item.important ? 'favorite-on' : 'favorite-off'
+                      }`}
                       onClick={() => handleFavoriteCheck(item.id)}
+                      style={
+                        item.important ? { color: 'green' } : { color: '' }
+                      }
+                      onChange={() => handleFavoriteCheck(item.id)}
                     />
                   </li>
                 );
