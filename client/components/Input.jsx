@@ -78,9 +78,13 @@ const Input = () => {
   };
 
   function deleteItem(id) {
-    const newArray = items.filter(item => item.id !== id);
-    localStorage.removeItem('todos');
-    setItems(newArray);
+    const itemToDelete = items.find(item => item.id === id); // Find the item to delete
+    if (itemToDelete) {
+      const newArray = items.filter(item => item.id !== id);
+      localStorage.setItem('todos', JSON.stringify(newArray));
+      alert(`You have removed "${itemToDelete.value}" from your list`);
+      setItems(newArray);
+    }
   }
 
   function handleComplete() {
@@ -103,56 +107,73 @@ const Input = () => {
 
   return (
     <main className="vh-100 app">
-      <div className="d-flex">
+      <div className="input-group flex-nowrap">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Todos..."
+          // aria-label="Username"
+          aria-describedby="addon-wrapping"
+          onChange={e => setInput(e.target.value)}
+          value={input}
+        />
+        <button className="border-0 todo-btn" onClick={() => addItem()}>
+          Add Todo
+        </button>
+      </div>
+      <div className="input-group flex-nowrap">
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={e => setQuery(e.target.value)}
+          className="form-control"
+        />
+      </div>
+
+      {/* <div className="d-flex">
         <input
           placeholder="Todos..."
-          onChange={e => setInput(e.target.value)}
+          onChange={(e) => setInput(e.target.value)}
           type="text"
           value={input}
         />
 
-        <button
-          className="border-0 todo-btn"
-          onClick={() => addItem()}
-        >
-          Add Todo
-        </button>
-
-      </div>
-      <input type="text" placeholder="Search..." onChange={e => setQuery(e.target.value)} className="search"/>
+      </div> */}
 
       <div>
         <ul>
           {filteredItems &&
-            filteredItems.filter(itemss => itemss.value.toLowerCase().includes(query)).map(item => {
-              return (
-                <li key={item.id} >
-                  <input
-                    type="checkbox"
-                    className="checkbox-round"
-                    onChange={() => handleCheck(item.id)}
-                  />
-                  <label
-                    style={
-                      item.checked
-                        ? { textDecoration: 'line-through', color: 'gray' }
-                        : null
-                    }
-                  >
-                    {item.value}
-                  </label>
+            filteredItems
+              .filter(itemss => itemss.value.toLowerCase().includes(query))
+              .map(item => {
+                return (
+                  <li key={item.id}>
+                    <input
+                      type="checkbox"
+                      className="checkbox-round"
+                      onChange={() => handleCheck(item.id)}
+                    />
+                    <label
+                      style={
+                        item.checked
+                          ? { textDecoration: 'line-through', color: 'gray' }
+                          : null
+                      }
+                    >
+                      {item.value}
+                    </label>
 
-                  <FaTimesCircle
-                    onClick={() => deleteItem(item.id)}
-                    className="delete-button"
-                  />
-                  <FaStar
-                    className="favorite-button"
-                    onClick={() => handleFavoriteCheck(item.id)}
-                  />
-                </li>
-              );
-            })}
+                    <FaTimesCircle
+                      onClick={() => deleteItem(item.id)}
+                      className="delete-button"
+                    />
+                    <FaStar
+                      className="favorite-button"
+                      onClick={() => handleFavoriteCheck(item.id)}
+                    />
+                  </li>
+                );
+              })}
         </ul>
         <p className="d-flex justify-content-center">
           {items.length === 0
@@ -162,19 +183,22 @@ const Input = () => {
       </div>
       <footer>
         <div className="footer-btns d-flex justify-content-center">
-          <button onClick={handleAllItems} className="filter-btns">
+          <button onClick={handleAllItems} className="btn btn-primary mx-1">
             all
           </button>
-          <button onClick={handleComplete} className="filter-btns">
+          <button onClick={handleComplete} className="btn btn-primary mx-1">
             complete
           </button>
-          <button onClick={handleIncomplete} className="filter-btns">
+          <button onClick={handleIncomplete} className="btn btn-primary mx-1">
             Incomplete
           </button>
-          <button onClick={handleFavorite} className="filter-btns">
+          <button onClick={handleFavorite} className="btn btn-primary mx-1">
             Important
           </button>
-          <button onClick={handleClearCompleted} className="filter-btns">
+          <button
+            onClick={handleClearCompleted}
+            className="btn btn-primary mx-1"
+          >
             Clear Completed
           </button>
         </div>
