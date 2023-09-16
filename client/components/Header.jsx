@@ -4,7 +4,7 @@ import { FaClipboardList } from 'react-icons/fa';
 const Header = () => {
   return (
     <header className="container-lg w-100">
-      <p className="text-center fs-5">What to do today?<FaClipboardList /></p>
+      <p className="text-center fs-5">What to do today? <FaClipboardList /></p>
     </header>
   );
 };

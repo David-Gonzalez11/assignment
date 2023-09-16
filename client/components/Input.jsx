@@ -28,11 +28,15 @@ const Input = () => {
     } else if (filter === "important") {
       const importantItems = items.filter((item) => item.important === true);
       setFilteredItems(importantItems);
+  
     } else if (filter === "completedTasks") {
       const clearCompleted = items.filter((item) =>
         item.checked ? null : items
       );
-      setItems(clearCompleted);
+      setFilteredItems(clearCompleted);
+      localStorage.setItem('todos', JSON.stringify(clearCompleted));
+
+      // setItems(clearCompleted);
     }
   }, [filter, items]);
 
@@ -148,20 +152,22 @@ const Input = () => {
           onChange={(e) => setQuery(e.target.value)}
           className="form-control"
         />
-      </div>
-
-      {/* <div className="d-flex">
-        <input
-          placeholder="Todos..."
-          onChange={(e) => setInput(e.target.value)}
-          type="text"
-          value={input}
-        />
-
-      </div> */}
+    
 
       <div>
-        <ul>
+        <input type="text" placeholder="Search..." onChange={e => setQuery(e.target.value)} className="search"/>
+        <div className='d-flex footer-btns mt-3 justify-content-center'>
+          <button onClick={handleAllItems} className="filter-btns">
+            all
+          </button>
+          <button onClick={handleComplete} className="filter-btns">
+            complete
+          </button>
+          <button onClick={handleIncomplete} className="filter-btns">
+            Incomplete
+          </button>
+        </div>
+        <ul className='width'>
           {filteredItems &&
             filteredItems
               .filter((itemss) => itemss.value.toLowerCase().includes(query))
@@ -225,6 +231,7 @@ const Input = () => {
       </div>
       <footer>
         <div className="footer-btns d-flex justify-content-center">
+          {/* <button onClick={handleAllItems} className="filter-btns">
           <button onClick={handleAllItems} className="btn btn-primary mx-1">
             all
           </button>
@@ -233,6 +240,8 @@ const Input = () => {
           </button>
           <button onClick={handleIncomplete} className="btn btn-primary mx-1">
             Incomplete
+          </button> */}
+          <button onClick={handleFavorite} className="filter-btns">
           </button>
           <button onClick={handleFavorite} className="btn btn-primary mx-1">
             Important
