@@ -197,3 +197,11 @@ p {
     width: 50%;
   }
 }
+
+.favorite-on {
+  color: green;
+}
+
+.favorite-off {
+  color: red;
+}
